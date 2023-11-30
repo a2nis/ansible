@@ -1,0 +1,7 @@
+[testing]
+node1 ansible_host=192.168.250.1 ansible_ssh_pass=pazos
+node2 ansible_host=192.168.170.1 ansible_ssh_pass=swjatix
+
+[testing:vars]
+ansible_ssh_user=pazos
+

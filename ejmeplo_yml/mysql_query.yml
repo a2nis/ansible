@@ -1,0 +1,17 @@
+---
+- name: Realizar consulta MySQL
+  hosts: node1
+  vars: 
+    user_pwd: "pazos"
+  tasks:
+    - name: Ejecutar consulta en {{user_pwd}}
+      mysql_query:
+        login_db: PAZOS
+        login_user: "{{user_pwd}}"
+        login_password: "{{user_pwd}}"
+        query: "SELECT * FROM SUCURSALES;"
+      register: resultado_consulta
+    
+    - name: Mostrar el estado del servicio
+      ansible.builtin.debug:
+        var: resultado_consulta.stdout_lines

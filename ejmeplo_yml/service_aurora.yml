@@ -1,0 +1,11 @@
+---
+- hosts: node1
+  tasks:
+    - name: Obtener el estado del servicio srvaurora
+      ansible.builtin.command:
+        cmd: systemctl status srvaurora.service
+      register: estado_servicio
+
+    - name: Mostrar el estado del servicio
+      ansible.builtin.debug:
+        var: estado_servicio.stdout_lines

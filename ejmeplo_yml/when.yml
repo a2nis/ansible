@@ -1,0 +1,15 @@
+---
+  - name: Prueba con when, visualizar hora de debian.
+    hosts: nodes
+
+    tasks:
+    - name: Capturar fecha
+      shell:
+        cmd: date
+      register: fecha
+      when: ansible_distribution=='Debian'
+
+    - name: Visualizo la fecha
+      debug:
+        msg: "{{fecha.stdout}}"
+      when: ansible_distribution=='Debian'

@@ -1,0 +1,26 @@
+---
+- name: Vars_files Consulta MySQL
+  hosts: node1
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Ejecutar consulta en {{user_pwd}}
+      mysql_query:
+        login_db: PAZOS
+        login_user: "{{user_pwd}}"
+        login_password: "{{user_pwd}}"
+        query: "SELECT * FROM SUCURSALES;"
+      register: resultado_consulta
+
+- name: Task Vars_files Consulta MySQL
+  hosts: node1
+  tasks:
+    - name: Include vars
+      include_vars: vars.yml
+    - name: Ejecutar consulta en {{user_pwd}}
+      mysql_query:
+        login_db: PAZOS
+        login_user: "{{user_pwd}}"
+        login_password: "{{user_pwd}}"
+        query: "SELECT * FROM SUCURSALES;"
+      register: resultado_consulta

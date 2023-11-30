@@ -1,0 +1,1 @@
+ansible-playbook  mysql_query_vars_task.yml -e 'user_pwd=pazos'

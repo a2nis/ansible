@@ -1,0 +1,24 @@
+---
+  - name: Ejemplo de varios filtros 
+    hosts: node1
+    vars: 
+      cadena: "hola"
+      numero: 10
+      verdad: true
+      lista:
+        - pepe
+        - juan
+        - antonio
+      lista1: ['pepe', 'juan', 'antonio']
+      diccionario: 
+        nombre: "Juan"
+        edad: 27
+
+    tasks:
+    - name: Convertir a cadena
+      ansible.builtin.debug:
+        var: numero
+
+    - name: Convertir a cadena
+      ansible.builtin.debug:
+        var: numero | string
