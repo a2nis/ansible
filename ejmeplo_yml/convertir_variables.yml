@@ -1,9 +1,10 @@
 ---
   - name: Ejemplo de varios filtros 
-    hosts: node1
+    hosts: nodes
     vars: 
       cadena: "hola"
       numero: 10
+      numero_string: "30"
       verdad: true
       lista:
         - pepe
@@ -16,9 +17,26 @@
 
     tasks:
     - name: Convertir a cadena
-      ansible.builtin.debug:
+      debug:
         var: numero
 
     - name: Convertir a cadena
-      ansible.builtin.debug:
+      debug:
         var: numero | string
+    
+    - name: Convertir a int 
+      debug:
+        var: numero_string | int
+    
+    - name: Saber tipo de variable 1
+      debug:
+        var: numero_string | type_debug
+
+    - name: Saber tipo de variable 
+      debug:
+        msg: "Tipo de variable es {{ cadena | type_debug }}"
+    
+    - name: Saber si utiliza version de Debian > 8
+      debug:
+        msg: "{{ansible_facts['distribution_version']}}"
+      when: ansible_distribution_version | int > 8
