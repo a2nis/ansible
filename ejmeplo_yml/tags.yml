@@ -1,0 +1,33 @@
+---
+
+- name: Ejemplo de etiqueta
+  hosts: nodes
+
+  tasks:
+  - name: Mostrar mensaje testing
+    debug:
+      msg: "Se muestra mensaje para testing..."
+    tags:
+      - testing
+
+  - name: Crear un fichero vacio
+    file: 
+      path: "/tmp/testing.txt"
+      state: "touch"
+    tags:
+      - testing
+
+  - name: Mostrar mensaje produccion 
+    debug:
+      msg: "Se muestra mensaje para produccion..."
+    tags:
+      - producion
+  
+  - name: Mostrar mensaje produccion y testing 
+    debug:
+      msg: "Se muestra mensaje para produccion y testing..."
+    tags:
+      - producion
+      - testing
+
+#ansible-playbook ejmeplo_yml/tags.yml -t testing

@@ -1,0 +1,9 @@
+---
+- name: Utilizando plantillas
+  hosts: node1
+
+  tasks:
+  - name: Utilizando plantillas
+    template:
+      src: plantilla.j2
+      dest: /tmp/salida.txt
