@@ -1,0 +1,38 @@
+---
+- name: Verificar existencia, copiar archivos .tgz y ejecutar script
+  hosts: tu_host
+  become: true
+  become_user: pazos
+  vars:
+    nombres_archivos_tgz:
+      - "a1.tgz"
+      - "a2.tgz"
+      - "a3.tgz"
+    ruta_destino: "/ruta/del/destino/"
+    nombre_script: "tu_script.sh"
+  tasks:
+    - name: Verificar existencia de archivos .tgz
+      stat:
+        path: "{{ ruta_destino }}/{{ item }}"
+      with_items: "{{ nombres_archivos_tgz }}"
+      register: archivos_tgz_stat
+
+    - name: Comprobar si todos los archivos existen
+      set_fact:
+        files_exist: "{{ archivos_tgz_stat.results | map(attribute='stat.exists') | list }}"
+
+    - name: Copiar archivos .tgz si todos existen
+      copy:
+        src: "{{ item.item }}"
+        dest: "{{ ruta_destino }}"
+      with_items: "{{ archivos_tgz_stat.results }}"
+      when: files_exist | difference([false]) | length == files_exist | length
+
+    - name: Ejecutar script
+      script: "{{ ruta_destino }}/{{ nombre_script }}"
+      register: script_output
+
+    - name: Guardar salida del script en un archivo
+      copy:
+        content: "{{ script_output.stdout_lines | join('\n') }}"
+        dest: "{{ ruta_destino }}/logs.txt"
