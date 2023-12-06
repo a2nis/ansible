@@ -1,0 +1,4 @@
+---
+# vars file for pazos
+directorio_local_paquetes: ../usuarios_roles/pazos/files/
+directorio_remoto_paquetes: /home/pazos/test/

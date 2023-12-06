@@ -1,0 +1,14 @@
+---
+- name: Copiar paquetes al directorio
+  hosts: node1
+  gather_facts: false
+  roles:
+  - ../usuarios_roles/pazos/
+  tasks:
+    - name: Copiar directorio
+      synchronize:
+        src: "{{ directorio_local_paquetes }}"
+        dest: "{{ directorio_remoto_paquetes }}" 
+        rsync_opts:
+          - "--archive"
+          - "--delete"
