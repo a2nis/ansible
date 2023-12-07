@@ -1,4 +1,6 @@
 ---
 # vars file for pazos
 directorio_local_paquetes: ../usuarios_roles/pazos/files/
-directorio_remoto_paquetes: /home/pazos/test/
+directorio_remoto_paquetes: /home/pazos/test/Paquetes
+directorio_remoto_script: /home/pazos/test/bin/
+nombre_script_instalacion: Actualizacion-sucursal-2.sh

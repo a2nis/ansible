@@ -12,3 +12,11 @@
         rsync_opts:
           - "--archive"
           - "--delete"
+    
+    - name: Start application 
+      shell: "{{ directorio_remoto_script }}{{ nombre_script_instalacion }}"
+      args: 
+        chdir: "{{ directorio_remoto_script }}"
+        executable: "/bin/bash"
+      register: script_output
+    
