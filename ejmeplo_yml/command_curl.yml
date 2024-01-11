@@ -7,6 +7,10 @@
       command: "curl -X GET --header 'Accept: aplication/json' 'http://127.0.0.1:8090/sisteco/sucursal/tickets/ObtenerTicket?codigoCaja=81&numeroTicket=1703'"
       register: resultado_curl
     
-    - name: Show Details
+    - name: Eliminar barras invertidas
+      set_fact:
+        resultado_curl_cleaned: "{{ resultado_curl.stdout_lines[0] | regex_replace('\\\\', '') }}"
+
+    - name: Mostrar resultado de curl
       debug:
-        msg: "{{ resultado_curl }}"
+        var: resultado_curl_cleaned
