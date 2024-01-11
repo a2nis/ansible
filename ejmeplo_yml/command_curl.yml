@@ -9,4 +9,4 @@
     
     - name: Show Details
       debug:
-        msg: "{{ resultado_curl }}"
+        msg: {{ resultado_curl }}
