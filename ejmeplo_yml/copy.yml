@@ -1,11 +1,11 @@
 ---
 - name: Ejemplo de Copy
-  hosts: nodes
+  hosts: node1
 
   tasks:
   - name: Copiar archivo
     copy:
-      src: archivo.tgz
+      src: /tmp/archivo.tgz
       dest: /tmp/
   
   - name: Grabar en archivo
